@@ -17,6 +17,7 @@ jobs:
         run: brew install xcodegen
       - name: Generate Xcode project
         run: cd ios && xcodegen generate
+
       - name: Setup signing (optional, uses repo secrets)
         run: |
           if [ -n "$IOS_P12_BASE64" ] && [ -n "$IOS_P12_PASSWORD" ] && [ -n "$IOS_MOBILEPROVISION_BASE64" ]; then
@@ -32,6 +33,7 @@ jobs:
           else
             echo "Signing secrets not provided — building without signing"
           fi
+
       - name: Build archive
         run: |
           xcodebuild -project ios/NexusMind.xcodeproj \
@@ -48,6 +50,7 @@ jobs:
             -configuration Release \
             -destination 'generic/platform=iOS' \
             -archivePath build/NexusMind.xcarchive archive
+
       - name: Export IPA
         run: |
           /usr/libexec/PlistBuddy -c "Add :method string app-store" ExportOptions.plist
@@ -57,11 +60,13 @@ jobs:
             /usr/libexec/PlistBuddy -c "Add :provisioningProfiles:$BUNDLE_ID string $PROVISIONING_PROFILE_NAME" ExportOptions.plist; \
           fi
           xcodebuild -exportArchive -archivePath build/NexusMind.xcarchive -exportPath build/ipa -exportOptionsPlist ExportOptions.plist
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: ipa
           path: build/ipa
+
   testflight:
     needs: build
     runs-on: macos-latest
@@ -79,22 +84,27 @@ jobs:
           else
             echo "upload=true" >> $GITHUB_OUTPUT
           fi
+
       - uses: actions/checkout@v4
         if: steps.check.outputs.upload == 'true'
+
       - name: Download IPA
         uses: actions/download-artifact@v4
         with:
           name: ipa
           path: build/ipa
         if: steps.check.outputs.upload == 'true'
+
       - name: Setup Fastlane
         run: gem install fastlane
         if: steps.check.outputs.upload == 'true'
+
       - name: Write API key
         run: |
           mkdir -p build
           echo "$APP_STORE_API_KEY_P8" > build/api_key.p8
         if: steps.check.outputs.upload == 'true'
+
       - name: Upload to TestFlight
         run: fastlane pilot upload --ipa build/ipa/*.ipa --api_key_path build/api_key.p8 --issuer_id "$APP_STORE_ISSUER_ID" --key_id "$APP_STORE_KEY_ID"
         if: steps.check.outputs.upload == 'true'
