@@ -21,7 +21,6 @@ jobs:
       - name: Setup signing (optional, uses repo secrets)
         run: |
           if [ -n "$IOS_P12_BASE64" ] && [ -n "$IOS_P12_PASSWORD" ] && [ -n "$IOS_MOBILEPROVISION_BASE64" ]; then
-            echo "Signing secrets detected — configuring keychain and profile"
             echo "$IOS_P12_BASE64" | base64 --decode > cert.p12
             security create-keychain -p "" build.keychain
             security import cert.p12 -k build.keychain -P "$IOS_P12_PASSWORD" -T /usr/bin/codesign -T /usr/bin/security
