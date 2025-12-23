@@ -1,0 +1,14 @@
+
+.psychologists {
+    margin-top: 30px;
+    display: flex; 
+    flex-wrap: wrap;   
+    justify-content: center;
+    gap: 40px; 
+}
+
+@media (max-width: 605px) {
+    .psychologists div {
+        width: 100%;
+    }
+}

@@ -1,0 +1,14 @@
+name: NexusMind
+options:
+  createIntermediateGroups: true
+targets:
+  NexusMind:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: Sources
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: net.nexusmind.app
+      INFOPLIST_FILE: Supporting/Info.plist
+      SWIFT_VERSION: 5.9

@@ -1,0 +1,136 @@
+.blur {
+    position: absolute;
+    filter: blur(120px);
+    opacity: 0.5;
+    z-index: -1;
+}
+
+.blur-1 {
+    width: 300px;
+    height: 300px;
+    background: #0487ec;
+    top: -400px;
+    left: -60px;
+}
+
+.blur-2 {
+    width: 250px;
+    height: 250px;
+    background: #c8b7ff;
+    bottom: -400px;
+    right: 40px;
+}
+
+.blur-3 {
+    width: 300px;
+    height: 300px;
+    background: #3e9ee7;
+    bottom: -400px;
+    right: 60px;
+}
+
+.blur-4 {
+    width: 250px;
+    height: 250px;
+    background: #c8b7ff;
+    top: -400px;
+    left: -40px;
+}
+
+.guiding {
+  text-align: center;
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  &__title {
+    font-size: 42px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 20px;
+  }
+
+  &__subtitle {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto 60px auto;
+    color: #555;
+  }
+
+  &__cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  &__card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px 25px;
+    width: 31%;
+    min-width: 280px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    transition: 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  &__icon {
+    font-size: 40px;
+    background: #e7f0ff;
+    color: #4e8bff;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px auto;
+  }
+
+  &__card-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+  &__card-text {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+  }
+}
+
+
+.obj__img {
+  width: 100px;
+  border-radius: 50%;
+}
+
+@media (max-width: 972px) {
+  .guiding__cards {
+    flex-direction: column;
+    align-items: center;
+
+    .guiding__card {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .guiding__title {
+    font-size: 30px;
+  }
+
+  .guiding__subtitle {
+    font-size: 15px;
+    max-width: 400px; 
+  } 
+} 

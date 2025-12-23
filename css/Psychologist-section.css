@@ -1,0 +1,18 @@
+.header {
+  text-align: center;
+}
+.header p {
+  font-size: 40px;
+  font-weight: 500;
+}
+.header .first {
+  color: #1e88ff;
+}
+
+.psychologists {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}/*# sourceMappingURL=Psychologist-section.css.map */

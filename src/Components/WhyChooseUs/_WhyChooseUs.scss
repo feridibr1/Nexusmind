@@ -1,0 +1,194 @@
+.header {
+    text-align: center;
+    margin-top: 50px;
+
+    p {
+        font-size: 40px;
+        font-weight: 500;
+
+    }
+
+    .first {
+        color: #1e88ff;
+    }
+}
+
+.why-choose-us {
+    position: relative; 
+    height: 700px;
+}
+
+.why-choose-us-wrapper {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 60px 0 160px 0;
+    overflow: visible;
+}
+
+
+.choose-card img {
+    width: 100px;
+    height: auto;
+    border-radius: 50%;
+}
+/* -----------------------------
+    ОБНОВЛЁННЫЙ ДИЗАЙН КАРТОЧЕК
+------------------------------ */
+.choose-card {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 450px;
+    min-height: 230px;
+    padding: 35px;
+    cursor: pointer;
+    background: linear-gradient(145deg, #ffffff, #f3f3f3);
+    border-radius: 26px;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.12),
+        inset 0 0 0 rgba(255, 255, 255, 0);
+
+    opacity: 0;
+    transform: translateY(40px) rotate(-8deg) scale(.75);
+    transform-origin: center;
+
+    transition:
+        opacity .8s ease-out,
+        transform .9s cubic-bezier(.25, .55, .32, 1),
+        box-shadow .3s ease,
+        background .3s ease;
+
+    background: linear-gradient(140deg, #b8b8f9, #00d5ff00, #7d9fe8);
+    background-size: 300% 300%;
+    animation: flowingGradient 8s ease infinite;
+}
+
+@keyframes flowingGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Появление */
+.choose-card.show {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+}
+
+/* Мгновенный hover — БЕЗ задержки */
+.choose-card:hover {
+    transform: translateY(-8px) rotate(3deg) scale(1.04) !important;
+    box-shadow:
+        0 25px 55px rgba(0, 0, 0, 0.18),
+        inset 0 0 20px rgba(255, 255, 255, 0.6);
+    background: linear-gradient(90deg, #c6c6ff, #f2f7f9, #a2b9eb);
+
+}
+
+/* Микроанимация движения мыши (интересно, но не перебор) */
+.choose-card:hover {
+    transition: transform .25s ease-out, box-shadow .25s ease-out;
+}
+
+
+/* Карточки внутри */
+.choose-card .icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.choose-card h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.choose-card p {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.55;
+}
+
+
+
+/* -----------------------------
+       ДЕСКТОПНАЯ РАСКЛАДКА
+------------------------------ */
+
+@media (min-width: 1000px) {
+    .choose-card:nth-child(1) {
+        top: 40px;
+        left: 40px;
+    }
+
+    .choose-card:nth-child(2) {
+        top: 350px;
+        left: 120px;
+    }
+
+    .choose-card:nth-child(3) {
+        top: 170px;
+        right: 40px;
+    }
+}
+
+
+/* -----------------------------
+       ПЛАНШЕТНЫЙ РЕЖИМ
+------------------------------ */
+
+@media (max-width: 999px) {
+.why-choose-us {
+        position: relative;
+        height: 1000px;
+    }
+    .choose-card {
+        position: relative;
+        width: 90%;
+        margin: 30px auto;
+    }
+
+    .why-choose-us-wrapper {
+        height: auto;
+    }
+}
+
+
+/* -----------------------------
+          МОБИЛЬНЫЙ
+------------------------------ */
+
+@media (max-width: 600px) {
+    .why-choose-us {
+        position: relative;
+        height: 1000px;
+    }
+
+    .choose-card {
+        width: 95%;
+        padding: 28px;
+    }
+
+    .choose-card .icon {
+        font-size: 42px;
+    }
+
+    .choose-card h3 {
+        font-size: 20px;
+    }
+
+    .choose-card p {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,46 @@
+@use '../../assets/styles/variables';
+
+.header {
+    text-align: center;
+
+    p {
+        font-size: 40px;
+        font-weight: 500;
+        
+    }
+    .first { 
+        color: #1e88ff;
+    }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.partners-logo {
+    margin-top: 30px;
+    white-space: nowrap;
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+
+    .slider {
+        animation: scroll 20s linear infinite;
+        width: calc(200px * 8);
+    }
+
+    .tebib-logo {
+        width: 200px;
+        height: 200px;
+    }
+
+    .sehiyye-logo {
+        width: 200px;
+        height: 200px;
+    }
+}

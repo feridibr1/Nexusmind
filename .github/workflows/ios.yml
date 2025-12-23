@@ -1,0 +1,83 @@
+name: ios
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Generate Xcode project
+        run: cd ios && xcodegen generate
+      - name: Setup signing (optional, uses repo secrets)
+        if: ${{ secrets.IOS_P12_BASE64 != '' && secrets.IOS_P12_PASSWORD != '' && secrets.IOS_MOBILEPROVISION_BASE64 != '' }}
+        env:
+          P12_BASE64: ${{ secrets.IOS_P12_BASE64 }}
+          P12_PASSWORD: ${{ secrets.IOS_P12_PASSWORD }}
+          PROFILE_BASE64: ${{ secrets.IOS_MOBILEPROVISION_BASE64 }}
+        run: |
+          echo "$P12_BASE64" | base64 --decode > cert.p12
+          security create-keychain -p "" build.keychain
+          security import cert.p12 -k build.keychain -P "$P12_PASSWORD" -T /usr/bin/codesign -T /usr/bin/security
+          security list-keychains -s build.keychain
+          security default-keychain -s build.keychain
+          security unlock-keychain -p "" build.keychain
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          echo "$PROFILE_BASE64" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision
+      - name: Build archive
+        env:
+          DEVELOPMENT_TEAM: ${{ secrets.DEVELOPMENT_TEAM }}
+          BUNDLE_ID: ${{ secrets.BUNDLE_ID }}
+          PROVISIONING_PROFILE_NAME: ${{ secrets.PROVISIONING_PROFILE_NAME }}
+        run: |
+          xcodebuild -project ios/NexusMind.xcodeproj \
+            -scheme NexusMind \
+            -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -archivePath build/NexusMind.xcarchive archive \
+            CODE_SIGN_STYLE=Manual \
+            DEVELOPMENT_TEAM="$DEVELOPMENT_TEAM" \
+            PRODUCT_BUNDLE_IDENTIFIER="$BUNDLE_ID" \
+            PROVISIONING_PROFILE_SPECIFIER="$PROVISIONING_PROFILE_NAME" || \
+          xcodebuild -project ios/NexusMind.xcodeproj \
+            -scheme NexusMind \
+            -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -archivePath build/NexusMind.xcarchive archive
+      - name: Export IPA
+        run: |
+          /usr/libexec/PlistBuddy -c "Add :method string app-store" ExportOptions.plist
+          if [ -n "${{ secrets.DEVELOPMENT_TEAM }}" ]; then /usr/libexec/PlistBuddy -c "Add :teamID string ${{ secrets.DEVELOPMENT_TEAM }}" ExportOptions.plist; fi
+          if [ -n "${{ secrets.BUNDLE_ID }}" ] && [ -n "${{ secrets.PROVISIONING_PROFILE_NAME }}" ]; then \
+            /usr/libexec/PlistBuddy -c "Add :provisioningProfiles dict" ExportOptions.plist; \
+            /usr/libexec/PlistBuddy -c "Add :provisioningProfiles:${{ secrets.BUNDLE_ID }} string ${{ secrets.PROVISIONING_PROFILE_NAME }}" ExportOptions.plist; \
+          fi
+          xcodebuild -exportArchive -archivePath build/NexusMind.xcarchive -exportPath build/ipa -exportOptionsPlist ExportOptions.plist
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ipa
+          path: build/ipa
+  testflight:
+    needs: build
+    if: ${{ secrets.APP_STORE_API_KEY_P8 != '' && secrets.APP_STORE_ISSUER_ID != '' && secrets.APP_STORE_KEY_ID != '' }}
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download IPA
+        uses: actions/download-artifact@v4
+        with:
+          name: ipa
+          path: build/ipa
+      - name: Setup Fastlane
+        run: gem install fastlane
+      - name: Write API key
+        run: |
+          mkdir -p build
+          echo "${{ secrets.APP_STORE_API_KEY_P8 }}" > build/api_key.p8
+      - name: Upload to TestFlight
+        env:
+          ISSUER_ID: ${{ secrets.APP_STORE_ISSUER_ID }}
+          KEY_ID: ${{ secrets.APP_STORE_KEY_ID }}
+        run: fastlane pilot upload --ipa build/ipa/*.ipa --api_key_path build/api_key.p8 --issuer_id "$ISSUER_ID" --key_id "$KEY_ID"

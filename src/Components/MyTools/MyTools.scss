@@ -1,0 +1,47 @@
+.my-tools-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 22px;
+  width: 100%;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+
+    .tool-box {
+      background: #f6f9ff;
+      border-radius: 12px;
+      padding: 18px 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.2s;
+
+      &:hover {
+        background: #e7f0ff;
+      }
+
+      .icon {
+        width: 34px;
+        height: 34px;
+        background: #d9e5ff;
+        border-radius: 8px;
+        margin: 0 auto 8px;
+        padding-top: 5px;
+      }
+
+      span {
+        font-size: 13px;
+        font-weight: 500;
+        color: #333;
+      }
+    }
+  }
+}

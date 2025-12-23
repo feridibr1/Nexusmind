@@ -1,0 +1,112 @@
+.service-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: 36px 30px;
+  width: 100%;
+  max-width: 360px;
+
+  border: 1px solid rgba(220, 230, 255, 0.6);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.04);
+  transition: all 0.35s ease;
+
+  /* Fade animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.7s ease forwards;
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Hover effect */
+  &:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 25px 50px rgba(30, 136, 255, 0.18);
+  }
+
+  /* Icon */
+  &__icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 28px;
+    margin-bottom: 24px;
+
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.6),
+      0 8px 20px rgba(0, 0, 0, 0.05);
+
+    transition: 0.3s ease;
+  }
+
+  &:hover .service-card__icon {
+    transform: scale(1.08) rotate(3deg);
+  }
+
+  /* Title */
+  &__title {
+    font-size: 21px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #1f2937;
+  }
+
+  /* Description */
+  &__desc {
+    font-size: 15.5px;
+    color: #4b5563;
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+
+  /* Link */
+  &__link {
+    font-size: 16px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    background: linear-gradient(90deg, #0fa766, #2ecc70);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-decoration: none;
+    transition: all 0.3s ease;
+
+    &::after {
+      content: "→";
+      transition: 0.3s ease;
+    }
+
+    &:hover::after {
+      transform: translateX(6px);
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    padding: 30px 24px;
+
+    &__icon {
+      width: 56px;
+      height: 56px;
+      font-size: 24px;
+    }
+
+    &__title {
+      font-size: 19px;
+    }
+
+    &__desc {
+      font-size: 14px;
+    }
+  }
+}

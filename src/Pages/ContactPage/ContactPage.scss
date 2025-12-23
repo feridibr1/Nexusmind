@@ -1,0 +1,264 @@
+.contact-page {
+  width: 100%;
+  max-width: 1200px; 
+  padding: 60px 24px !important;
+  background: #f7f8fa;
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box; 
+
+  /* HEADER ------------------------------------------------ */
+  .header-section {
+    max-width: 700px;
+    margin: 0 auto 40px;
+    text-align: center;
+
+    h1 {
+      font-size: 34px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.6;
+    }
+  }
+
+  /* INFO CARDS ------------------------------------------- */
+  .info-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 45px;
+
+    .card {
+      background: #fff;
+      padding: 22px;
+      border-radius: 16px;
+      border: 1px solid #e8e8e8;
+      text-align: center;
+      transition: .25s;
+      cursor: pointer;
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0,0,0,.07);
+      }
+
+      .icon {
+        font-size: 30px;
+        margin-bottom: 10px;
+      }
+
+      .label {
+        font-size: 14px;
+        color: #666;
+      }
+
+      .value {
+        margin-top: 6px;
+        font-size: 15px;
+      }
+    }
+  }
+
+  /* FORM -------------------------------------------------- */
+  .form-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px 28px 35px;
+    border-radius: 16px;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 4px 16px rgba(0,0,0,.04);
+
+    h2 {
+      text-align: center;
+      font-size: 22px;
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+
+    form {
+      width: 100%;
+
+      .row {
+        display: flex;
+        gap: 20px;
+        width: 100%;
+      }
+
+      .field {
+        flex: 1;
+        margin-bottom: 18px;
+
+        label {
+          display: block;
+          margin-bottom: 6px;
+          color: #444;
+          font-size: 14px;
+          font-weight: 500;
+        }
+
+        input,
+        textarea {
+          width: 100%;
+          padding: 12px 14px;
+          border-radius: 10px;
+          border: 1px solid #dcdcdc;
+          background: #fafafa;
+          font-size: 14px;
+          outline: none;
+          transition: .25s;
+
+          &:focus {
+            background: #fff;
+            border-color: #3b8eff;
+            box-shadow: 0 0 0 3px rgba(59,142,255,0.15);
+          }
+        }
+
+        textarea {
+          height: 140px;
+          resize: none;
+        }
+      }
+
+      .privacy-note {
+        font-size: 13px;
+        color: #666;
+        margin-bottom: 10px;
+      }
+
+      /* Кнопка БЕЗ float — flex решает всё */
+      .submit-btn {
+        margin-left: auto;
+        background: #3b8eff;
+        color: #fff;
+        padding: 13px 28px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        transition: .25s;
+        font-size: 15px;
+
+        &:hover {
+          background: #1e74e6;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 10px rgba(30,116,230,.3);
+        }
+      }
+    }
+  }
+
+  /* DISCLAIMER -------------------------------------------- */
+  .disclaimer {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 18px 22px;
+    border-radius: 12px;
+    background: #ffecec;
+    border-left: 4px solid #ff4a4a;
+
+    .icon {
+      font-size: 22px;
+    }
+
+    strong {
+      color: #c40000;
+    }
+  }
+
+  /* FOOTER ------------------------------------------------ */
+  footer {
+    margin-top: 60px;
+    padding-top: 25px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+    p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .links {
+      display: flex;
+      gap: 18px;
+
+      a {
+        text-decoration: none;
+        font-size: 14px;
+        color: #555;
+        transition: .2s;
+
+        &:hover {
+          text-decoration: underline;
+          color: #3b8eff;
+        }
+      }
+    }
+  }
+
+  /* RESPONSIVE ------------------------------------------- */
+
+  /* Tablets */
+  @media (max-width: 1024px) {
+    .info-cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Phones */
+  @media (max-width: 700px) {
+    margin-top: 100px;
+
+    .info-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .form-container {
+      padding: 28px 18px;
+    }
+
+    .form-container form .row {
+      flex-direction: column;
+    }
+
+    .form-container form .submit-btn {
+      width: 100%;
+      margin: 10px 0 0 0;
+    }
+
+    footer {
+      text-align: center;
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+
+  /* SUPER SMALL — 320px */
+  @media (max-width: 360px) {
+    padding: 20px 12px;
+
+    .form-container {
+      padding: 20px 14px;
+    }
+
+    .form-container form .submit-btn {
+      width: 100%;
+      font-size: 14px;
+      padding: 12px 0;
+    }
+  }
+}

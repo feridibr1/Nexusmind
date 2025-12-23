@@ -1,0 +1,76 @@
+
+
+.about-hero {
+  background: linear-gradient(180deg, #eaf3ee 0%, #d8e8f7 100%);
+  border-radius: 16px;
+  padding: 5rem 4rem;
+  max-width: 1200px;
+  margin: 120px auto 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+
+
+  &__content {
+    max-width: 700px;
+
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #0b1525;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+
+      span {
+        color: #1e88ff;
+      }
+    }
+
+    p {
+      color: #444c56;
+      font-size: 1.125rem;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+    }
+  }
+}
+
+@media (max-width: 830px) {
+  .brain_image {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-hero__content {
+    justify-content: center;
+    h1 {
+      & {
+        font-size: 35px;
+      }
+    }
+
+    p { 
+      font-size: 15px; 
+    }
+  }
+}
+
+
+@media (max-width: 380px) {
+  .about-hero__content {
+    padding: 0 10px;
+
+    h1 {
+      & {
+        font-size: 25px;
+      }
+    }
+
+    p { 
+      font-size: 15px; 
+    }
+  }
+}

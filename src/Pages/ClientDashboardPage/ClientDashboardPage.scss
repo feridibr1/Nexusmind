@@ -1,0 +1,36 @@
+
+
+.Dashboard-header {
+    h3 {
+        font-size: xx-large;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    p {
+        font-size: large;
+        color: #555;
+        margin-top: 10px;
+    }
+}
+
+.dashboard-components {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: auto auto auto; 
+    gap: 25px;
+
+    .left-components {
+        grid-column: 1/span 2;
+    }
+
+    .comp-bottom {
+        margin-top: 25px;
+    }
+}
+
+@media (max-width: 972px) {
+    .dashboard-components {
+        display: flex;
+        flex-direction: column;
+    }
+}

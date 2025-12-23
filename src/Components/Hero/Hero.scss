@@ -1,0 +1,214 @@
+ 
+.hero {
+  position: relative;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #eaf3ee, #d8e8f7);
+  padding: 6rem 4rem;
+  margin: 120px auto 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+
+  /* Animated particles */
+  .particles { 
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background: url("../../assets/images/ChatGPT\ Image\ Nov\ 27\,\ 2025\,\ 12_51_05\ AM.png"); 
+    opacity: 0.25;
+    animation: float 12s linear infinite;
+    filter: brightness(0.8) ;
+  }
+
+  @keyframes float {
+    from { transform: translateY(0); }
+    to { transform: translateY(-200px); }
+  }
+
+  /* Glow blobs */
+  .blur {
+    position: absolute;
+    filter: blur(90px);
+    opacity: 0.5;
+  }
+
+  .blur-1 {
+    width: 280px;
+    height: 280px;
+    background: #7fc8ff;
+    top: -40px;
+    left: -50px;
+  }
+
+  .blur-2 {
+    width: 260px;
+    height: 260px;
+    background: #a5ffd6;
+    bottom: -40px;
+    right: -30px;
+  }
+
+  &__content {
+    max-width: 650px;
+    position: relative;
+    z-index: 2;
+
+    h1 {
+      font-size: 3.3rem;
+      font-weight: 800;
+      color: #0b1525;
+    }
+
+    p {
+      color: #334155;
+      font-size: 1.2rem;
+      margin: 1rem 0 2.5rem;
+    }
+
+    /* BUTTONS */
+    .hero__buttons {
+      display: flex;
+      gap: 1rem;
+
+      .btn {
+        text-decoration: none;
+        font-size: 1.05rem;
+        font-weight: 600;
+        border-radius: 12px;
+        padding: 1rem 2rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border: none;
+        transition: 0.3s;
+      }
+
+      .primary {
+        background: linear-gradient(135deg, #1e88ff, #006dff);
+        color: #fff;
+        box-shadow: 0 10px 30px rgba(0, 115, 255, .25);
+
+        &:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 12px 35px rgba(0, 115, 255, .4);
+        }
+      }
+
+      /* PULSE GLOW */
+      .pulse {
+        animation: pulseGlow 2.2s infinite ease-in-out;
+      }
+
+      @keyframes pulseGlow {
+        0%, 100% { box-shadow: 0 0 0px rgba(0, 115, 255, 0.0); }
+        50% { box-shadow: 0 0 25px rgba(0, 115, 255, 0.55); }
+      }
+
+      .secondary {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        color: #0b1525;
+
+        &:hover {
+          background: #f3f6fa;
+        }
+      }
+    }
+
+    /* TRUST BADGES */
+    .trust {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+
+      span {
+        background: rgba(255,255,255,0.7);
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        backdrop-filter: blur(6px);
+        border: 1px solid #dce6ef;
+      }
+    }
+  }
+
+  /* RIGHT IMAGE */
+  &__image {
+    img {
+      width: 420px;
+      border-radius: 22px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+      transform: translateY(0);
+      transition: .4s;
+
+      &:hover {
+        transform: translateY(-6px);
+      }
+    }
+  }
+
+  /* FADE UP ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp .7s ease forwards;
+  }
+
+  .delay-1 { animation-delay: .15s; }
+  .delay-2 { animation-delay: .3s; }
+  .delay-3 { animation-delay: .45s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+
+@media (max-width: 1040px) {
+  .hero {
+    flex-direction: column;
+    padding: 3rem 1.2rem; 
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+     
+  .trust {
+    display: flex;
+    align-items: center;
+    justify-content: center !important; 
+  }
+  }
+
+  .hero__content {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero__image img {
+    width: 100%;
+    margin-top: 20px;
+    max-width: 380px; // можно оставить ограничение
+  }
+}
+
+
+@media (max-width: 440px) {
+  .fade-up {
+    font-size: 35px !important; 
+  }
+ 
+  .hero__buttons {
+    flex-direction: column;
+  }
+
+  .hero__buttons button {
+    font-size: 14px !important;
+    padding: 14px 18px !important;  
+    justify-content: center;
+  }
+}

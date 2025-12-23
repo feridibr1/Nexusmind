@@ -1,0 +1,62 @@
+.heart-animation {
+    position: relative;
+    width: 650px;
+    height: 500px;
+    margin-left: 40px;
+
+    img {
+        position: absolute;
+        top: 65%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        opacity: 0;
+    }
+
+    .left-heart {
+        width: 500px;
+        left: -500px;
+        animation: leftHeartIn 2.2s ease forwards;
+        z-index: 2;
+    }
+
+    .right-heart {
+        width: 545px;
+        right: -520px;
+        animation: rightHeartIn 2.2s ease forwards;
+        animation-delay: 0.12s;
+    }
+}
+
+
+/* —————————————— LEFT —————————————— */
+@keyframes leftHeartIn {
+    0% {
+        left: -350px;
+        opacity: 0;
+    }
+    60% {
+        left: -80px;       /* подлёт */
+        opacity: 1;
+    }
+    100% {
+        left: -75px;       /* АБСОЛЮТНАЯ Точка слияния */
+        opacity: 1;
+    }
+}
+
+
+/* —————————————— RIGHT —————————————— */
+@keyframes rightHeartIn {
+    0% {
+        right: -350px;
+        opacity: 0;
+    }
+    60% {
+        right: -80px;
+        opacity: 1;
+    }
+    100% {
+        right: -75px;      /* корректное идеальное приклеивание */
+        opacity: 1;
+    }
+}

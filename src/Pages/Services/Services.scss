@@ -1,0 +1,76 @@
+.services {
+  padding: 140px 20px 100px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  /* Background blur shapes */
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    filter: blur(110px);
+    opacity: 0.35;
+    z-index: -1;
+  }
+
+  &::before {
+    width: 300px;
+    height: 300px;
+    background: #7fc8ff;
+    top: -40px;
+    left: -60px;
+  }
+
+  &::after {
+    width: 260px;
+    height: 260px;
+    background: #c8b7ff;
+    bottom: -40px;
+    right: -40px;
+  }
+
+  /* Title */
+  &__title {
+    font-size: 42px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #1e88ff, #6aa8ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Subtitle */
+  &__subtitle {
+    font-size: 17px;
+    color: #4b5563;
+    max-width: 650px;
+    margin: 12px auto 55px;
+    line-height: 1.65;
+  }
+
+  /* Cards Grid */
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Responsive */
+  @media (max-width: 992px) {
+    &__cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    &__cards > *:last-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 600px) {
+    &__cards {
+      grid-template-columns: 1fr;
+    }
+  }
+}

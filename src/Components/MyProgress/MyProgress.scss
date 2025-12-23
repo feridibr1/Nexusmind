@@ -1,0 +1,25 @@
+.progress-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+}
+
+.progress-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #1e1e1e;
+}
+
+.progress-chart {
+  background: #f6f8fb;
+  border-radius: 20px;
+  height: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #8a94a6;
+  font-size: 14px;
+}

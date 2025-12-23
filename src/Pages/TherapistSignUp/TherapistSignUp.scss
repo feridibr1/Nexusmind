@@ -1,0 +1,135 @@
+.signup-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 40px 0 !important;
+  text-align: center;
+
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .subtitle {
+    color: #777;
+    margin-bottom: 30px;
+  }
+
+  .progress-wrapper {
+    margin-bottom: 25px;
+    text-align: left;
+
+    .progress-text {
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: #555;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #eaeaea;
+      border-radius: 4px;
+
+      .progress {
+        height: 100%;
+        background: #1e88ff;
+        border-radius: 4px;
+        transition: 0.3s;
+      }
+    }
+  }
+
+  .form-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    label {
+      text-align: left;
+      margin-bottom: -8px;
+      color: #444;
+      font-size: 14px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 15px;
+
+      &:focus {
+        outline: none;
+        border-color: #9cccaa;
+      }
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .row {
+      display: flex;
+      gap: 12px;
+
+      input {
+        width: 100%;
+      }
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .continue,
+    .back {
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .continue {
+      background: #1e88ff;
+      color: #fff;
+    }
+
+    .back {
+      background: #eee;
+    }
+  }
+
+  .footer-text {
+    margin-top: 20px;
+    color: #777;
+    font-size: 14px;
+
+    span {
+      margin-right: 5px;
+    }
+  }
+}
+
+
+@media (max-width: 540px) {
+ 
+
+  .signup-container .row {
+    flex-direction: column !important;
+    gap: 10px !important; 
+  } 
+
+  .progress-wrapper {
+    padding: 0 10px;
+  }
+
+  .form-box {
+    padding: 0 20px;
+  }
+}
